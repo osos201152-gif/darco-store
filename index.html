@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داركو للتجارة والخدمات العامة - متجر خزانات وفلاتر المياه</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    darco: {
+                        navy: '#0F2027',
+                        blue: '#203A43',
+                        accent: '#2C5364',
+                        orange: '#FF6B00',
+                        orangeHover: '#E05D00',
+                        lightBg: '#F8FAFC',
+                        cardBg: '#FFFFFF'
+                    }
+                },
+                fontFamily: {
+                    cairo: ['Cairo', 'sans-serif']
+                }
+            }
+        }
+    }
+</script>
+<style>
+    body {
+        font-family: 'Cairo', sans-serif;
+        background-color: #F8FAFC;
+    }
+    .glass-header {
+        background: rgba(15, 32, 39, 0.95);
+        backdrop-filter: blur(10px);
+    }
+    .gradient-orange {
+        background: linear-gradient(135deg, #FF6B00 0%, #FF8800 100%);
+    }
+    .gradient-navy {
+        background: linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #CBD5E1;
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #94A3B8;
+    }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+<!-- Header / Navbar -->
+<header class="glass-header text-white sticky top-0 z-40 shadow-xl border-b border-slate-700/50">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+             <div class="w-12 h-12 bg-white rounded-xl p-1 flex items-center justify-center shadow-lg border border-orange-500/30 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                <img src="https://lh3.googleusercontent.com/d/1VUbRuRUeG7yu3lugAxan01M2rooltGsd" alt="شعار داركو" class="w-full h-full object-contain">
+            </div>
+            <div>
+                <span class="text-xl md:text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
+                    داركــو <span class="text-orange-500 text-xs px-2 py-0.5 bg-orange-500/10 border border-orange-500/30 rounded-full font-bold">للتجارة والخدمات العامة</span>
+                </span>
+                <p class="text-[10px] text-slate-300 font-medium">متجر داركو لخزانات المياه والمعالجة</p>
+            </div>
+        </a>
+
+        <!-- Quick Contacts & Cart -->
+        <div class="flex items-center gap-3 md:gap-5">
+            <a href="https://wa.me/967777566009" target="_blank" class="hidden md:flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl font-bold text-sm transition-all shadow-md hover:shadow-emerald-600/30">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>تواصل مباشر</span>
+            </a>
+
+            <a href="tel:777566009" class="hidden sm:flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 px-3 py-2 rounded-xl text-xs font-semibold transition-all">
+                <i class="fa-solid fa-phone text-orange-400"></i>
+                <span dir="ltr">777 566 009</span>
+            </a>
+
+            <!-- Cart Button -->
+            <button id="cartBtn" class="relative bg-darco-orange hover:bg-darco-orangeHover text-white p-2.5 md:px-4 md:py-2.5 rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-orange-500/20 active:scale-95">
+                <i class="fa-solid fa-cart-shopping text-lg"></i>
+                <span class="hidden md:inline text-sm">السلة</span>
+                <span id="cartBadge" class="bg-white text-darco-navy font-black text-xs w-5 h-5 rounded-full flex items-center justify-center border-2 border-orange-500">0</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Category Switcher Tabs (أزرار التنقل بين الأقسام) -->
+<div class="bg-slate-900 border-b border-slate-800 text-white sticky top-20 z-30 shadow-md">
+    <div class="container mx-auto px-4 flex gap-3 overflow-x-auto py-3">
+        <button onclick="switchCategory('tanks')" id="tabTanks" class="bg-darco-orange text-white px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold flex items-center gap-2 transition-all shadow">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>خزانات المياه</span>
+        </button>
+        <button onclick="switchCategory('filters')" id="tabFilters" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-water"></i>
+            <span>فلاتر ومحطات تنقية المياه والقطارات</span>
+        </button>
+    </div>
+</div>
+
+<!-- Hero Banner (يختفي تلقائياً عند الدخول لقسم الفلاتر لترتيب الصفحة) -->
+<section id="heroBannerSection" class="gradient-navy text-white py-12 md:py-16 relative overflow-hidden transition-all">
+    <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -left-20 -top-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-5 text-center lg:text-right">
+                <div class="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/40 text-orange-300 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-semibold">
+                    <i class="fa-solid fa-shield-halved text-orange-400"></i>
+                    <span>الوكيل والمعتمد الأول لخزانات المياه في اليمن</span>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">
+                    احصل على أنقى مياه بحماية فائقة مع <span class="text-orange-500">خزانات داركو</span>
+                </h1>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    نوفر لك أفضل ماركات خزانات المياه بالمواصفات المعتمدة (سنتكس، الكبوس، الوطنية) بجميع السعات والطبقات العازلة للبكتيريا وأشعة الشمس الضارة مع خدمة التوصيل والتركيب والعزل.
+                </p>
+                <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs md:text-sm">
+                    <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/10">
+                        <i class="fa-solid fa-truck-fast text-orange-400"></i>
+                        <span>توصيل سريع داخل صنعاء</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/10">
+                        <i class="fa-solid fa-award text-orange-400"></i>
+                        <span>ضمان يصل لـ 10 سنوات</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/10">
+                        <i class="fa-solid fa-bacteria text-orange-400"></i>
+                        <span>مقاوم للبكتيريا والطحالب</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fast Tank Calculator Teaser Card -->
+            <div class="lg:col-span-5">
+                <div class="bg-white text-slate-800 rounded-2xl p-6 shadow-2xl border border-slate-100 relative">
+                    <div class="absolute -top-3 right-6 bg-darco-orange text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                        حاسبة سريعة 🧮
+                    </div>
+                    <h3 class="text-lg font-bold text-darco-navy mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-orange-500"></i>
+                        احسب السعة المناسبة لعائلتك
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4">أدخل عدد أفراد المنزل لمعرفة السعة المثالية باللتر</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">عدد أفراد الأسرة:</label>
+                            <div class="flex items-center border border-slate-300 rounded-xl overflow-hidden focus-within:border-orange-500">
+                                <button type="button" onclick="adjustPeople(-1)" class="bg-slate-100 px-4 py-2 hover:bg-slate-200 font-bold text-lg text-slate-700">-</button>
+                                <input type="number" id="calcPeople" value="5" min="1" max="50" class="w-full text-center font-extrabold text-darco-navy focus:outline-none text-base" readonly>
+                                <button type="button" onclick="adjustPeople(1)" class="bg-slate-100 px-4 py-2 hover:bg-slate-200 font-bold text-lg text-slate-700">+</button>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                            <span class="text-xs text-slate-500 block">السعة التقديرية الموصى بها:</span>
+                            <span id="calcResult" class="text-xl font-black text-darco-orange">2,000 لتر</span>
+                            <span id="calcNote" class="text-[11px] text-emerald-600 font-semibold block mt-0.5">تكفي لمدة 3-4 أيام استخدام طبيعي</span>
+                        </div>
+
+                        <button onclick="scrollToProductsAndFilter()" class="w-full bg-darco-navy hover:bg-darco-blue text-white py-2.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-md">
+                            <i class="fa-solid fa-filter text-orange-400"></i>
+                            <span>عرض الخزانات المطابقة للسعة</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content Area -->
+<main class="container mx-auto px-4 py-10 flex-grow">
+    
+    <!-- Filter Bar -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 mb-8">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4 pb-4 border-b border-slate-100">
+            <div>
+                <h2 id="sectionTitle" class="text-xl font-black text-darco-navy flex items-center gap-2">
+                    <i class="fa-solid fa-boxes-stacked text-orange-500"></i>
+                    كتالوج خزانات المياه
+                </h2>
+                <p id="sectionSubtitle" class="text-xs text-slate-500">استعرض وتصفح أفضل الماركات والمواصفات المتاحة لدى داركو</p>
+            </div>
+            <button onclick="resetFilters()" class="text-xs text-orange-600 hover:text-orange-700 font-bold flex items-center gap-1 self-end lg:self-auto">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>إعادة ضبط الفلاتر</span>
+            </button>
+        </div>
+
+        <!-- Filters Grid (تتغير حسب القسم النشط) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="filtersContainer">
+            <!-- Brand Filter -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">الماركة / المصنع:</label>
+                <select id="filterBrand" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500">
+                    <option value="all">جميع الماركات (سنتكس، الكبوس، الوطنية)</option>
+                    <option value="سنتكس">سنتكس (Santex)</option>
+                    <option value="الكبوس">الكبوس (Al-Kabous)</option>
+                    <option value="الوطنية">الوطنية (Al-Watania)</option>
+                </select>
+            </div>
+
+            <!-- Capacity Filter -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">السعة (باللتر):</label>
+                <select id="filterCapacity" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500">
+                    <option value="all">جميع السعات</option>
+                    <option value="1000">1000 لتر</option>
+                    <option value="2000">2000 لتر</option>
+                    <option value="3000">3000 لتر</option>
+                    <option value="5000">5000 لتر</option>
+                </select>
+            </div>
+
+            <!-- Layers Filter -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">عدد الطبقات العازلة:</label>
+                <select id="filterLayers" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500">
+                    <option value="all">جميع الطبقات</option>
+                    <option value="3">3 طبقات عازلة</option>
+                    <option value="4">4 طبقات عازلة مطورة</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section id="productsSection">
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- JavaScript will populate products here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200">
+            <i class="fa-solid fa-filter-circle-xmark text-5xl text-slate-300 mb-3 block"></i>
+            <h3 class="text-base font-bold text-slate-700">لا توجد منتجات مطابقة لخيارات الفلترة الحالية</h3>
+            <p class="text-xs text-slate-500 mt-1 mb-4">جرب تغيير خيارات التصفية لعرض المنتجات المتاحة</p>
+            <button onclick="resetFilters()" class="bg-darco-orange text-white text-xs font-bold px-4 py-2 rounded-xl">إعادة عرض الكل</button>
+        </div>
+    </section>
+
+    <!-- Why Choose Darco Banner -->
+    <section class="mt-16 bg-gradient-to-r from-darco-navy to-darco-accent rounded-3xl p-8 text-white shadow-xl">
+        <div class="text-center max-w-2xl mx-auto mb-8">
+            <h2 class="text-2xl font-black text-white mb-2">لماذا تشتري من داركو للتجارة؟</h2>
+            <p class="text-xs md:text-sm text-slate-300">نضمن لك تجربة شراء متكاملة تشمل الضمان الحقيقي والخدمات الميدانية المباشرة</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div class="bg-white/10 border border-white/10 p-5 rounded-2xl backdrop-blur-sm">
+                <div class="w-12 h-12 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-3">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                </div>
+                <h4 class="font-bold text-sm mb-1">توصيل ورفع متكامل</h4>
+                <p class="text-xs text-slate-300">نوفر أسطول نقل مجهز لتوصل طلبك حتى موقعك بأمان</p>
+            </div>
+
+            <div class="bg-white/10 border border-white/10 p-5 rounded-2xl backdrop-blur-sm">
+                <div class="w-12 h-12 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-3">
+                    <i class="fa-solid fa-shield-virus"></i>
+                </div>
+                <h4 class="font-bold text-sm mb-1">خامات غذائية صحية 100%</h4>
+                <p class="text-xs text-slate-300">جميع المنتجات مصنوعة من خامات نقية معتمدة للاستخدام البشري</p>
+            </div>
+
+            <div class="bg-white/10 border border-white/10 p-5 rounded-2xl backdrop-blur-sm">
+                <div class="w-12 h-12 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-3">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+                <h4 class="font-bold text-sm mb-1">خدمات العزل والتركيب</h4>
+                <p class="text-xs text-slate-300">خدمة الربط الفني وعزل الخزانات وتركيب الفلاتر بكادر داركو المتخصص</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Side Cart Drawer -->
+<div id="cartDrawer" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300 flex justify-end">
+    <div id="drawerPanel" class="w-full max-w-md bg-white h-full shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
+        <!-- Drawer Header -->
+        <div class="bg-darco-navy text-white p-4 flex items-center justify-between border-b border-slate-700">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-basket-shopping text-orange-500 text-lg"></i>
+                <h3 class="font-bold text-base">سلة المشتريات</h3>
+                <span id="cartDrawerCount" class="bg-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full">0</span>
+            </div>
+            <button onclick="closeCart()" class="text-slate-400 hover:text-white text-lg p-1">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsContainer" class="flex-grow overflow-y-auto p-4 space-y-3">
+            <!-- JavaScript Populated Items -->
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-4 bg-slate-50 border-t border-slate-200 space-y-3">
+            <div class="space-y-1.5 text-xs">
+                <div class="flex justify-between text-slate-600">
+                    <span>إجمالي المنتجات:</span>
+                    <span id="cartSubtotal" class="font-bold text-slate-800">0 ريال يمني</span>
+                </div>
+                <div class="flex justify-between text-slate-600">
+                    <span>التوصيل والتركيب:</span>
+                    <span class="text-emerald-600 font-bold">يحدد عند الاتصال</span>
+                </div>
+                <div class="flex justify-between text-sm font-black text-darco-navy pt-2 border-t border-slate-200">
+                    <span>الإجمالي التقديري:</span>
+                    <span id="cartTotal" class="text-orange-600">0 ريال يمني</span>
+                </div>
+            </div>
+
+            <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 active:scale-95 transition-all">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>إرسال الطلب عبر الواتساب</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Order Modal -->
+<div id="orderModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-100 animate-fadeIn">
+        <!-- Modal Header -->
+        <div class="bg-darco-navy text-white p-4 flex items-center justify-between">
+            <h3 class="font-bold text-base flex items-center gap-2">
+                <i class="fa-solid fa-truck-front text-orange-500"></i>
+                طلب مباشر وتحديد الخدمات
+            </h3>
+            <button onclick="closeModal()" class="text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Modal Content Form -->
+        <div class="p-5 space-y-4 max-h-[80vh] overflow-y-auto">
+            <!-- Product Preview Card -->
+            <div id="modalProductPreview" class="bg-slate-50 border border-slate-200 rounded-xl p-3 flex gap-3 items-center">
+                <!-- Populated dynamically -->
+            </div>
+
+            <form id="directOrderForm" onsubmit="handleDirectOrderSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">الاسم الكامل *</label>
+                    <input type="text" id="custName" required placeholder="مثال: أحمد محمد الحيمي" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-orange-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">رقم الهاتف / الواتساب *</label>
+                    <input type="tel" id="custPhone" required placeholder="77XXXXXXX" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-orange-500" dir="ltr">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">عنوان التوصيل في صنعاء *</label>
+                    <input type="text" id="custAddress" required placeholder="اسم الحي / الشارع / معلم قريب" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-orange-500">
+                </div>
+
+                <!-- Additional Services Checks (جميع خدماتك الإضافية موجودة هنا) -->
+                <div class="pt-2 border-t border-slate-200 space-y-2">
+                    <label class="block text-xs font-bold text-darco-navy">خدمات إضافية من داركو:</label>
+                    
+                    <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
+                        <input type="checkbox" id="srvDelivery" class="accent-orange-500 w-4 h-4 rounded">
+                        <span class="text-xs font-bold text-slate-700">طلب خدمة التوصيل للفيلا/العمارة</span>
+                    </label>
+
+                    <label class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100">
+                        <input type="checkbox" id="srvInsulation" class="accent-orange-500 w-4 h-4 rounded">
+                        <span class="text-xs font-bold text-slate-700">طلب خدمة العزل أو النعلة الوقائية للخزان</span>
+                    </label>
+                </div>
+
+                <div class="pt-3">
+                    <button type="submit" class="w-full bg-darco-orange hover:bg-darco-orangeHover text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>تأكيد وإرسال عبر الواتساب</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-darco-navy text-white pt-12 pb-6 border-t-4 border-orange-500 mt-auto">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            <!-- Col 1: About -->
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-white rounded-lg p-1 flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <path d="M50 5 L90 20 V50 C90 75 50 95 50 95 C50 95 10 75 10 50 V20 Z" fill="#0F2027" stroke="#FF6B00" stroke-width="5"/>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-black tracking-tight">داركو للتجارة والخدمات</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    إحدى فروع شركة داركو للخدمات العامة المخصصة لتوفير خزانات المياه عالية الجودة والمستلزمات الإنشائية والخدمات الميدانية بأعلى معايير الجودة.
+                </p>
+                <p class="text-[11px] text-orange-400 font-bold italic">"نحن لا نبيع منتجات، نحن نبيع راحة بال"</p>
+            </div>
+
+            <!-- Col 2: Brands -->
+            <div>
+                <h4 class="text-sm font-bold text-orange-400 mb-3 border-r-2 border-orange-500 pr-2">الماركات المعتمدة</h4>
+                <ul class="space-y-2 text-xs text-slate-300 font-semibold">
+                    <li><a href="#" onclick="filterByBrandName('سنتكس')" class="hover:text-orange-400 transition-colors">• خزانات سنتكس (Santex)</a></li>
+                    <li><a href="#" onclick="filterByBrandName('الكبوس')" class="hover:text-orange-400 transition-colors">• خزانات الكبوس (Al-Kabous)</a></li>
+                    <li><a href="#" onclick="filterByBrandName('الوطنية')" class="hover:text-orange-400 transition-colors">• خزانات الوطنية (Al-Watania)</a></li>
+                    <li><a href="#" class="hover:text-orange-400 transition-colors">• مستلزمات العزل والإبوكسي</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Contact Info -->
+            <div>
+                <h4 class="text-sm font-bold text-orange-400 mb-3 border-r-2 border-orange-500 pr-2">معلومات التواصل</h4>
+                <ul class="space-y-2.5 text-xs text-slate-300">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-location-dot text-orange-400 mt-0.5"></i>
+                        <span>صنعاء - مديرية السبعين - شارع 45</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-orange-400"></i>
+                        <span dir="ltr">777 566 009 / 739 393 943</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                        <span dir="ltr">+967 777 566 009</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Working Hours & Support -->
+            <div>
+                <h4 class="text-sm font-bold text-orange-400 mb-3 border-r-2 border-orange-500 pr-2">ساعات العمل والخدمة</h4>
+                <p class="text-xs text-slate-300 mb-2">نستقبل طلباتكم واستفساراتكم على مدار الأسبوع:</p>
+                <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 text-xs space-y-1">
+                    <div class="flex justify-between text-slate-300">
+                        <span>السبت - الخميس:</span>
+                        <span class="font-bold text-white">8:00 ص - 8:00 م</span>
+                    </div>
+                    <div class="flex justify-between text-slate-300">
+                        <span>الجمعة:</span>
+                        <span class="font-bold text-orange-400">خدمة الواتساب متاحة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-6 border-t border-slate-800 text-center text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p>© 2026 جميع الحقوق محفوظة لـ <strong>داركو للتجارة والخدمات العامة</strong></p>
+            <p class="text-[11px] text-slate-500">تم التطوير لتسهيل خيارات الشراء والخدمات الميدانية</p>
+        </div>
+    </div>
+</footer>
+
+<!-- App Logic JavaScript -->
+<script>
+    // Database of Water Tanks (كما طلبت تماماً بدون مسح أي حرف أو ميزة)
+    const productsData = [
+        {
+            id: 1,
+            name: "خزان مياه سنتكس أفقي 1000 لتر",
+            brand: "سنتكس",
+            capacity: 1000,
+            layers: 3,
+            price: 135000,
+            warranty: "10 سنوات ضمان",
+            images: [
+                `<img src="https://lh3.googleusercontent.com/d/1cMJcunN0kT9yK6IzS9AgIICNUcZWp_6b" class="w-full h-32 object-contain mx-auto" alt="خزان سنتكس">`,       
+                `<img src="https://lh3.googleusercontent.com/d/12OyvE2YVqPjudeHmQ-XVOujPvw-VcTHO" class="w-full h-32 object-contain mx-auto" alt="خزان سنتكس">`
+            ],
+            features: ["عازل للأشعة فوق البنفسجية", "طبقة داخلية بيضاء ناصعة", "مقاوم للطحالب"]
+        },
+        {
+            id: 2,
+            name: "خزان مياه سنتكس عمودي 2000 لتر (4 طبقات)",
+            brand: "سنتكس",
+            capacity: 2000,
+            layers: 4,
+            price: 240000,
+            warranty: "10 سنوات ضمان",
+            images: [
+                `<svg viewBox="0 0 160 180" class="w-full h-36 mx-auto"><rect x="35" y="25" width="90" height="130" rx="30" fill="#0F2027" stroke="#FF6B00" stroke-width="4"/><rect x="60" y="10" width="40" height="15" rx="4" fill="#2C5364"/><text x="80" y="85" fill="#FF6B00" font-size="13" font-weight="bold" text-anchor="middle">سنتكس 2000L</text></svg>`,
+                `<svg viewBox="0 0 160 180" class="w-full h-36 mx-auto"><rect x="35" y="25" width="90" height="130" rx="30" fill="#203A43" stroke="#FF6B00" stroke-width="4"/><text x="80" y="85" fill="#FFFFFF" font-size="13" font-weight="bold" text-anchor="middle">سنتكس 2000L - صورة 2</text></svg>`
+            ],
+            features: ["حماية فائقة 4 طبقات", "طبقة سوداء مانعة للضوء", "سهل التنظيف والصيانة"]
+        },
+        {
+            id: 3,
+            name: "خزان الكبوس الذهبي 2000 لتر",
+            brand: "الكبوس",
+            capacity: 2000,
+            layers: 3,
+            price: 225000,
+            warranty: "7 سنوات ضمان",
+            images: [
+                `<svg viewBox="0 0 160 180" class="w-full h-36 mx-auto"><rect x="35" y="25" width="90" height="130" rx="30" fill="#1E3A8A" stroke="#F59E0B" stroke-width="4"/><rect x="60" y="10" width="40" height="15" rx="4" fill="#1D4ED8"/><text x="80" y="85" fill="#F59E0B" font-size="13" font-weight="bold" text-anchor="middle">الكبوس 2000L</text></svg>`
+            ],
+            features: ["بولي إيثيلين نقي 100%", "تحمل درجات الحرارة العالية", "فتحات توصيل متعددة"]
+        },
+        {
+            id: 4,
+            name: "خزان الكبوس العمودي 3000 لتر",
+            brand: "الكبوس",
+            capacity: 3000,
+            layers: 4,
+            price: 330000,
+            warranty: "10 سنوات ضمان",
+            images: [
+                `<svg viewBox="0 0 160 180" class="w-full h-36 mx-auto"><rect x="30" y="20" width="100" height="140" rx="35" fill="#1E3A8A" stroke="#F59E0B" stroke-width="4"/><rect x="60" y="8" width="40" height="12" rx="4" fill="#1D4ED8"/><text x="80" y="85" fill="#FFFFFF" font-size="14" font-weight="bold" text-anchor="middle">الكبوس 3000L</text></svg>`
+            ],
+            features: ["سعة كبيرة للمنازل والفلل", "مقاوم للصدمات والتآكل", "معتمد صحياً"]
+        },
+        {
+            id: 5,
+            name: "خزان الوطنية المطور 3000 لتر",
+            brand: "الوطنية",
+            capacity: 3000,
+            layers: 3,
+            price: 310000,
+            warranty: "8 سنوات ضمان",
+            images: [
+                `<svg viewBox="0 0 160 180" class="w-full h-36 mx-auto"><rect x="30" y="20" width="100" height="140" rx="35" fill="#065F46" stroke="#10B981" stroke-width="4"/><rect x="60" y="8" width="40" height="12" rx="4" fill="#047857"/><text x="80" y="85" fill="#FFFFFF" font-size="14" font-weight="bold" text-anchor="middle">الوطنية 3000L</text></svg>`
+            ],
+            features: ["صناعة معتمدة جودة عالية", "حماية مضادة للبكتيريا", "تصميم متين"]
+        },
+        {
+            id: 6,
+            name: "خزان الوطنية عملاق 5000 لتر (4 طبقات)",
+            brand: "الوطنية",
+            capacity: 5000,
+            layers: 4,
+            price: 520000,
+            warranty: "10 سنوات ضمان",
+            images: [
+                `<svg viewBox="0 0 180 190" class="w-full h-40 mx-auto"><rect x="25" y="15" width="130" height="155" rx="40" fill="#065F46" stroke="#FF6B00" stroke-width="5"/><text x="90" y="85" fill="#FFFFFF" font-size="16" font-weight="bold" text-anchor="middle">الوطنية 5000L</text></svg>`
+            ],
+            features: ["مثالي للمنشآت والعمائر", "سمك مضاعف للطبقات", "أعلى درجات الأمان المائي"]
+        },
+        {
+            id: 7,
+            name: "خزان سنتكس 5000 لتر افقي",
+            brand: "سنتكس",
+            capacity: 5000,
+            layers: 4,
+            price: 540000,
+            warranty: "10 سنوات ضمان",
+            images: [
+                `<svg viewBox="0 0 200 140" class="w-full h-32 mx-auto"><rect x="20" y="20" width="160" height="100" rx="45" fill="#0F2027" stroke="#FF6B00" stroke-width="5"/><text x="100" y="70" fill="#FFFFFF" font-size="15" font-weight="bold" text-anchor="middle">SANTEX 5000L</text></svg>`
+            ],
+            features: ["ثبات ممتاز على الأسطح", "طبقات عازلة للحرارة الشمسية", "ضمان حقيقي من داركو"]
+        },
+        {
+            id: 8,
+            name: "خزان الوطنية 1000 لتر اقتصادي",
+            brand: "الوطنية",
+            capacity: 1000,
+            layers: 3,
+            price: 128000,
+            warranty: "5 سنوات ضمان",
+            images: [
+                `<svg viewBox="0 0 160 180" class="w-full h-36 mx-auto"><rect x="40" y="30" width="80" height="120" rx="25" fill="#065F46" stroke="#34D399" stroke-width="3"/><text x="80" y="85" fill="#FFFFFF" font-size="12" font-weight="bold" text-anchor="middle">الوطنية 1000L</text></svg>`
+            ],
+            features: ["اقتصادي ومناسب للمساحات الضيقة", "سهل النقل والتركيب", "عازل ضوئي"]
+        }
+    ];
+
+    // Database of Filters & Spare Parts (قسم الفلاتر والقطارات)
+    const filtersData = [
+        {
+            id: 101,
+            name: "محطة تحلية مياه منزلية RO (7 مراحل)",
+            brand: "محطات تحلية",
+            price: 115000,
+            warranty: "سنتان ضمان شامل",
+            images: [
+                `<img src="https://lh3.googleusercontent.com/d/17SRMcU0-qwfebg9u_6U-v2j5GLZ3lu8W" class="w-full h-32 object-contain mx-auto" alt="محطة تحلية ">`,       
+                `<img src="https://lh3.googleusercontent.com/d/1BY7hqtXKWWI8ukySyTAEiRT1fpU1zyvw" class="w-full h-32 object-contain mx-auto" alt="محطة تحلية ">`
+            ],
+            features: ["تنقية كاملة وإزالة الأملاح الضارة", "خزان استيل سعة 12 لتر", "معادن صحية لتحسين طعم الماء"]
+        },
+        {
+            id: 102,
+            name: "فلتر مرحلة واحدة مركزي (شمعة قطن)",
+            brand: "فلاتر وقطارات",
+            price: 18000,
+            warranty: "ضمان ضد العيوب المصنعية",
+            images: [
+                `<img src="https://lh3.googleusercontent.com/d/1GOf0OJL421byzCbDvJI5gXxxlBCGz7Nj" class="w-full h-32 object-contain mx-auto" alt="محطة تحلية ">`,       
+                  `<img src="https://lh3.googleusercontent.com/d/1n1LjsvnRoFsbcuCWO_eUJIGv45se2Q4e" class="w-full h-32 object-contain mx-auto" alt="محطة تحلية ">`,       
+
+            ],
+            features: ["إزالة الشوائب والصدأ والأتربة", "مثالي لمدخل الشقق والخزانات العلوية"]
+        },
+        {
+            id: 103,
+            name: "مجموعة قطارات وشمعات إضافية (3 مراحل)",
+            brand: "فلاتر وقطارات",
+            price: 14000,
+            warranty: "أصلية 100%",
+            images: [
+                `<img src="https://lh3.googleusercontent.com/d/1NrPtXBa6CWPGJJU7PVc6z2y-mxVu-cX0" class="w-full h-32 object-contain mx-auto" alt="محطة تحلية ">`,       
+                 `<img src="https://lh3.googleusercontent.com/d/1kgSttTq_4j16l8FypA6iwHHvS1ig_0J5" class="w-full h-32 object-contain mx-auto" alt="محطة تحلية ">`,       
+
+            ],
+            features: ["شمعة ترشيح دقيق + كربون نشط", "عمر افتراضي طويل وكفاءة عالية"]
+        }
+    ];
+
+    // Global State
+    let currentCategory = 'tanks';
+    let cart = [];
+    let selectedProductForDirectOrder = null;
+    let activeImageIndices = {};
+
+    // Initialize App & Read URL Hash (#tanks or #filters)
+    document.addEventListener('DOMContentLoaded', () => {
+        checkUrlHashAndSwitch();
+        window.addEventListener('hashchange', checkUrlHashAndSwitch);
+        updateCalculator();
+    });
+
+    // Check URL Hash for Direct Links (مثالي للإعلانات الممولة)
+    function checkUrlHashAndSwitch() {
+        const hash = window.location.hash.replace('#', '');
+        if (hash === 'filters' || hash === 'tanks') {
+            switchCategory(hash, false);
+        } else {
+            switchCategory('tanks', false);
+        }
+    }
+
+    // Switch Between Tanks and Filters Categories
+    function switchCategory(category, updateHash = true) {
+        currentCategory = category;
+
+        if (updateHash) {
+            window.location.hash = category;
+        }
+
+        const tabTanks = document.getElementById('tabTanks');
+        const tabFilters = document.getElementById('tabFilters');
+        const heroBanner = document.getElementById('heroBannerSection');
+        const sectionTitle = document.getElementById('sectionTitle');
+        const sectionSubtitle = document.getElementById('sectionSubtitle');
+        const filtersContainer = document.getElementById('filtersContainer');
+
+        if (category === 'tanks') {
+            tabTanks.className = "bg-darco-orange text-white px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold flex items-center gap-2 transition-all shadow";
+            tabFilters.className = "bg-slate-800 hover:bg-slate-700 text-slate-300 px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold flex items-center gap-2 transition-all";
+            
+            heroBanner.classList.remove('hidden');
+            sectionTitle.innerHTML = `<i class="fa-solid fa-boxes-stacked text-orange-500"></i> كتالوج خزانات المياه`;
+            sectionSubtitle.textContent = "استعرض وتصفح أفضل الماركات والمواصفات المتاحة لدى داركو";
+
+            filtersContainer.innerHTML = `
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">الماركة / المصنع:</label>
+                    <select id="filterBrand" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500">
+                        <option value="all">جميع الماركات (سنتكس، الكبوس، الوطنية)</option>
+                        <option value="سنتكس">سنتكس (Santex)</option>
+                        <option value="الكبوس">الكبوس (Al-Kabous)</option>
+                        <option value="الوطنية">الوطنية (Al-Watania)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">السعة (باللتر):</label>
+                    <select id="filterCapacity" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500">
+                        <option value="all">جميع السعات</option>
+                        <option value="1000">1000 لتر</option>
+                        <option value="2000">2000 لتر</option>
+                        <option value="3000">3000 لتر</option>
+                        <option value="5000">5000 لتر</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">عدد الطبقات العازلة:</label>
+                    <select id="filterLayers" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500">
+                        <option value="all">جميع الطبقات</option>
+                        <option value="3">3 طبقات عازلة</option>
+                        <option value="4">4 طبقات عازلة مطورة</option>
+                    </select>
+                </div>
+            `;
+        } else {
+            tabTanks.className = "bg-slate-800 hover:bg-slate-700 text-slate-300 px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold flex items-center gap-2 transition-all";
+            tabFilters.className = "bg-darco-orange text-white px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold flex items-center gap-2 transition-all shadow";
+            
+            heroBanner.classList.add('hidden');
+            sectionTitle.innerHTML = `<i class="fa-solid fa-water text-orange-500"></i> فلاتر ومحطات تنقية المياه والقطارات`;
+            sectionSubtitle.textContent = "أحدث أنظمة التحلية المنزلية وشمعات الفلترة الأصلية";
+
+            filtersContainer.innerHTML = `
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">نوع النظام / الفلتر:</label>
+                    <select id="filterBrand" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-800 focus:outline-none focus:border-orange-500">
+                        <option value="all">جميع فلاتر وقطارات المياه</option>
+                        <option value="محطات تحلية">محطات تحلية منزلية RO</option>
+                        <option value="فلاتر وقطارات">فلاتر وشمعات وقطارات</option>
+                    </select>
+                </div>
+            `;
+        }
+        applyFilters();
+    }
+
+    // Render Products List with Multiple Images support
+    function renderProducts(items) {
+        const grid = document.getElementById('productsGrid');
+        const emptyState = document.getElementById('emptyState');
+
+        if (items.length === 0) {
+            grid.innerHTML = '';
+            emptyState.classList.remove('hidden');
+            return;
+        }
+
+        emptyState.classList.add('hidden');
+        grid.innerHTML = items.map(product => {
+            if (activeImageIndices[product.id] === undefined) {
+                activeImageIndices[product.id] = 0;
+            }
+            const currentImgIdx = activeImageIndices[product.id];
+            const currentImgContent = product.images[currentImgIdx] || product.images[0];
+            const hasMultipleImages = product.images.length > 1;
+
+            const capacityOrDesc = product.capacity 
+                ? `<span class="bg-slate-100 px-2 py-0.5 rounded-md font-semibold">السعة: ${product.capacity.toLocaleString()} لتر</span>` 
+                : `<span class="bg-slate-100 px-2 py-0.5 rounded-md font-semibold">نظام فلترة معتمد</span>`;
+
+            const layersBadge = product.layers 
+                ? `<span class="absolute top-3 left-3 bg-orange-500/10 border border-orange-500/30 text-orange-600 text-[10px] font-bold px-2 py-0.5 rounded-full z-10">${product.layers} طبقات</span>`
+                : `<span class="absolute top-3 left-3 bg-blue-500/10 border border-blue-500/30 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full z-10">أصلي معتمد</span>`;
+
+            return `
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
+                <!-- Card Header / Image Gallery Slider -->
+                <div class="bg-slate-50 p-4 border-b border-slate-100 relative text-center">
+                    <span class="absolute top-3 right-3 bg-darco-navy text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow z-10">
+                        ${product.brand}
+                    </span>
+                    ${layersBadge}
+                    
+                    <div class="group-hover:scale-105 transition-transform duration-300 my-2 min-h-[120px] flex items-center justify-center" id="img-container-${product.id}">
+                        ${currentImgContent}
+                    </div>
+
+                    <!-- Gallery Arrows if multiple images -->
+                    ${hasMultipleImages ? `
+                        <button onclick="changeProductImage(${product.id}, -1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-slate-700 w-7 h-7 rounded-full shadow border flex items-center justify-center text-xs transition z-20">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <button onclick="changeProductImage(${product.id}, 1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-slate-700 w-7 h-7 rounded-full shadow border flex items-center justify-center text-xs transition z-20">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <div class="absolute bottom-1 left-1/2 -translate-x-1/2 bg-slate-900/60 text-white text-[9px] px-2 py-0.5 rounded-full">
+                            ${currentImgIdx + 1} / ${product.images.length}
+                        </div>
+                    ` : ''}
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm leading-snug mb-1">${product.name}</h3>
+                        <div class="flex items-center gap-2 text-[11px] text-slate-500 mb-2">
+                            ${capacityOrDesc}
+                            <span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check text-[9px]"></i> ${product.warranty}</span>
+                        </div>
+
+                        <ul class="space-y-1 text-[11px] text-slate-600">
+                            ${product.features.map(f => `<li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-orange-500 text-[10px]"></i> ${f}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <!-- Price & Action -->
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-baseline justify-between">
+                            <span class="text-[11px] text-slate-400 font-semibold">السعر المقدر:</span>
+                            <div>
+                                <span class="text-base font-black text-darco-navy">${product.price.toLocaleString()}</span>
+                                <span class="text-[10px] font-bold text-slate-500">ر.ي</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 pt-1">
+                            <button onclick="addToCart(${product.id})" class="bg-slate-100 hover:bg-slate-200 text-darco-navy text-xs font-bold py-2 rounded-xl transition-all flex items-center justify-center gap-1">
+                                <i class="fa-solid fa-cart-plus text-orange-500"></i>
+                                <span>للسلة</span>
+                            </button>
+                            <button onclick="openDirectModal(${product.id})" class="bg-darco-orange hover:bg-darco-orangeHover text-white text-xs font-bold py-2 rounded-xl transition-all flex items-center justify-center gap-1 shadow-md shadow-orange-500/10">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>طلب مباشر</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        }).join('');
+    }
+
+    // Switch image for product card gallery
+    function changeProductImage(productId, direction) {
+        const activeDataset = currentCategory === 'tanks' ? productsData : filtersData;
+        const product = activeDataset.find(p => p.id === productId);
+        if (!product || product.images.length <= 1) return;
+
+        let currentIdx = activeImageIndices[productId] || 0;
+        currentIdx = (currentIdx + direction + product.images.length) % product.images.length;
+        activeImageIndices[productId] = currentIdx;
+
+        applyFilters();
+    }
+
+    function getActiveFilteredProducts() {
+        const dataset = currentCategory === 'tanks' ? productsData : filtersData;
+        const brandElem = document.getElementById('filterBrand');
+        const brand = brandElem ? brandElem.value : 'all';
+
+        if (currentCategory === 'tanks') {
+            const capacityElem = document.getElementById('filterCapacity');
+            const layersElem = document.getElementById('filterLayers');
+            const capacity = capacityElem ? capacityElem.value : 'all';
+            const layers = layersElem ? layersElem.value : 'all';
+
+            return dataset.filter(item => {
+                const matchBrand = (brand === 'all' || item.brand === brand);
+                const matchCapacity = (capacity === 'all' || item.capacity.toString() === capacity);
+                const matchLayers = (layers === 'all' || item.layers.toString() === layers);
+                return matchBrand && matchCapacity && matchLayers;
+            });
+        } else {
+            return dataset.filter(item => {
+                const matchBrand = (brand === 'all' || item.brand === brand);
+                return matchBrand;
+            });
+        }
+    }
+
+    // Apply Filters Logic
+    function applyFilters() {
+        const filtered = getActiveFilteredProducts();
+        renderProducts(filtered);
+    }
+
+    function resetFilters() {
+        const brandElem = document.getElementById('filterBrand');
+        if (brandElem) brandElem.value = 'all';
+        if (currentCategory === 'tanks') {
+            const capacityElem = document.getElementById('filterCapacity');
+            const layersElem = document.getElementById('filterLayers');
+            if (capacityElem) capacityElem.value = 'all';
+            if (layersElem) layersElem.value = 'all';
+        }
+        applyFilters();
+    }
+
+    function filterByBrandName(brandName) {
+        switchCategory('tanks');
+        const brandElem = document.getElementById('filterBrand');
+        if (brandElem) brandElem.value = brandName;
+        applyFilters();
+        document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Calculator Logic
+    function adjustPeople(delta) {
+        const input = document.getElementById('calcPeople');
+        let val = parseInt(input.value) + delta;
+        if (val < 1) val = 1;
+        if (val > 50) val = 50;
+        input.value = val;
+        updateCalculator();
+    }
+
+    function updateCalculator() {
+        const peopleInput = document.getElementById('calcPeople');
+        if (!peopleInput) return;
+        const people = parseInt(peopleInput.value) || 1;
+        const resultElem = document.getElementById('calcResult');
+        const noteElem = document.getElementById('calcNote');
+
+        const totalNeeded = people * 400; 
+
+        let recommendedCap = 1000;
+        if (totalNeeded > 1000 && totalNeeded <= 2000) recommendedCap = 2000;
+        else if (totalNeeded > 2000 && totalNeeded <= 3500) recommendedCap = 3000;
+        else if (totalNeeded > 3500) recommendedCap = 5000;
+
+        resultElem.textContent = `${recommendedCap.toLocaleString()} لتر`;
+        noteElem.textContent = `يناسب استهلاك عائلة من ${people} أفراد بشكل مريح`;
+    }
+
+    function scrollToProductsAndFilter() {
+        const people = parseInt(document.getElementById('calcPeople').value) || 1;
+        const totalNeeded = people * 400;
+        let recommendedCap = "1000";
+        if (totalNeeded > 1000 && totalNeeded <= 2000) recommendedCap = "2000";
+        else if (totalNeeded > 2000 && totalNeeded <= 3500) recommendedCap = "3000";
+        else if (totalNeeded > 3500) recommendedCap = "5000";
+
+        switchCategory('tanks');
+        const capacityElem = document.getElementById('filterCapacity');
+        if (capacityElem) capacityElem.value = recommendedCap;
+        applyFilters();
+
+        document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Cart Drawer Handlers
+    const cartDrawer = document.getElementById('cartDrawer');
+    const drawerPanel = document.getElementById('drawerPanel');
+
+    document.getElementById('cartBtn').addEventListener('click', openCart);
+
+    function openCart() {
+        cartDrawer.classList.remove('opacity-0', 'pointer-events-none');
+        drawerPanel.classList.remove('translate-x-full');
+        renderCartItems();
+    }
+
+    function closeCart() {
+        cartDrawer.classList.add('opacity-0', 'pointer-events-none');
+        drawerPanel.classList.add('translate-x-full');
+    }
+
+    function addToCart(productId) {
+        const allProducts = [...productsData, ...filtersData];
+        const product = allProducts.find(p => p.id === productId);
+        const existing = cart.find(item => item.id === productId);
+
+        if (existing) {
+            existing.qty++;
+        } else {
+            cart.push({ ...product, qty: 1 });
+        }
+
+        updateCartBadge();
+        openCart();
+    }
+
+    function updateCartBadge() {
+        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+        document.getElementById('cartBadge').textContent = totalQty;
+        document.getElementById('cartDrawerCount').textContent = totalQty;
+    }
+
+    function changeQty(productId, delta) {
+        const item = cart.find(i => i.id === productId);
+        if (!item) return;
+
+        item.qty += delta;
+        if (item.qty <= 0) {
+            cart = cart.filter(i => i.id !== productId);
+        }
+
+        updateCartBadge();
+        renderCartItems();
+    }
+
+    function renderCartItems() {
+        const container = document.getElementById('cartItemsContainer');
+        const subtotalElem = document.getElementById('cartSubtotal');
+        const totalElem = document.getElementById('cartTotal');
+
+        if (cart.length === 0) {
+            container.innerHTML = `
+                <div class="text-center py-12 text-slate-400 space-y-2">
+                    <i class="fa-solid fa-basket-shopping text-4xl mb-1"></i>
+                    <p class="text-xs font-bold">السلة فارغة حالياً</p>
+                    <p class="text-[11px]">أضف منتجات من القائمة لإكمال الطلب</p>
+                </div>
+            `;
+            subtotalElem.textContent = '0 ريال يمني';
+            totalElem.textContent = '0 ريال يمني';
+            return;
+        }
+
+        let subtotal = 0;
+        container.innerHTML = cart.map(item => {
+            const itemTotal = item.price * item.qty;
+            subtotal += itemTotal;
+            return `
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center justify-between gap-3">
+                    <div class="space-y-1">
+                        <h4 class="font-bold text-xs text-slate-800">${item.name}</h4>
+                        <div class="text-[10px] text-slate-500 font-semibold">
+                            <span>${item.price.toLocaleString()} ر.ي × ${item.qty}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center bg-white border border-slate-300 rounded-lg overflow-hidden">
+                            <button onclick="changeQty(${item.id}, -1)" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-xs font-bold">-</button>
+                            <span class="px-2 text-xs font-bold text-darco-navy">${item.qty}</span>
+                            <button onclick="changeQty(${item.id}, 1)" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-xs font-bold">+</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        subtotalElem.textContent = `${subtotal.toLocaleString()} ريال يمني`;
+        totalElem.textContent = `${subtotal.toLocaleString()} ريال يمني`;
+    }
+
+    function checkoutWhatsApp() {
+        if (cart.length === 0) return;
+
+        let msg = `*طلب جديد عبر متجر داركو للتجارة والخدمات العامة*\n`;
+        msg += `--------------------------------------\n`;
+        cart.forEach((item, index) => {
+            msg += `${index + 1}. *${item.name}*\n   العدد: ${item.qty} | السعر: ${(item.price * item.qty).toLocaleString()} ر.ي\n`;
+        });
+
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        msg += `--------------------------------------\n`;
+        msg += `*الإجمالي التقديري:* ${total.toLocaleString()} ريال يمني\n`;
+        msg += `*الموقع:* صنعاء\n`;
+        msg += `يرجى التواصل لترتيب التوصيل والتركيب.`;
+
+        const encoded = encodeURIComponent(msg);
+        window.open(`https://wa.me/967777566009?text=${encoded}`, '_blank');
+    }
+
+    // Direct Order Modal Handlers
+    function openDirectModal(productId) {
+        const allProducts = [...productsData, ...filtersData];
+        selectedProductForDirectOrder = allProducts.find(p => p.id === productId);
+        const preview = document.getElementById('modalProductPreview');
+
+        let rawImageHtml = selectedProductForDirectOrder.images[0];
+        let adjustedImageHtml = rawImageHtml
+            .replace(/w-full h-32 object-contain mx-auto/g, 'w-20 h-20 object-contain rounded-lg bg-white p-1 border border-slate-200');
+
+        preview.innerHTML = `
+            <div class="flex-shrink-0 flex items-center justify-center w-20 h-20 bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                ${adjustedImageHtml}
+            </div>
+            <div class="flex-grow">
+                <h4 class="font-bold text-xs text-darco-navy mb-0.5">${selectedProductForDirectOrder.name}</h4>
+                <p class="text-[11px] text-slate-500 mb-1">${selectedProductForDirectOrder.brand} | ${selectedProductForDirectOrder.price.toLocaleString()} ريال يمني</p>
+            </div>
+        `;
+
+        document.getElementById('orderModal').classList.remove('hidden');
+        document.getElementById('orderModal').classList.add('flex');
+    }
+
+    function closeModal() {
+        document.getElementById('orderModal').classList.add('hidden');
+        document.getElementById('orderModal').classList.remove('flex');
+    }
+
+    function handleDirectOrderSubmit(e) {
+        e.preventDefault();
+        if (!selectedProductForDirectOrder) return;
+
+        const name = document.getElementById('custName').value;
+        const phone = document.getElementById('custPhone').value;
+        const address = document.getElementById('custAddress').value;
+        const needDelivery = document.getElementById('srvDelivery').checked;
+        const needInsulation = document.getElementById('srvInsulation').checked;
+
+        let msg = `*طلب حجز منتج مباشر (داركو للتجارة)*\n`;
+        msg += `--------------------------------------\n`;
+        msg += `*المنتج:* ${selectedProductForDirectOrder.name}\n`;
+        msg += `*السعر:* ${selectedProductForDirectOrder.price.toLocaleString()} ريال يمني\n`;
+        msg += `--------------------------------------\n`;
+        msg += `*بيانات العميل:*\n`;
+        msg += `• الاسم: ${name}\n`;
+        msg += `• الهاتف: ${phone}\n`;
+        msg += `• العنوان: ${address}\n`;
+        msg += `--------------------------------------\n`;
+        msg += `*الخدمات الميدانية المطلوبة:*\n`;
+        msg += `• خدمة التوصيل: ${needDelivery ? 'نعم مطلوب' : 'غير مطلوب'}\n`;
+        msg += `• خدمة العزل والنعلة الوقائية: ${needInsulation ? 'نعم مطلوب' : 'غير مطلوب'}\n`;
+
+        const encoded = encodeURIComponent(msg);
+        window.open(`https://wa.me/967777566009?text=${encoded}`, '_blank');
+        closeModal();
+    }
+</script>
+</body>
+</html>
